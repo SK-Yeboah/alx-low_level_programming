@@ -1,4 +1,4 @@
-#inlcude "main.h"
+#include"main.h"
 
 /**
  * flip_bits - Count the number of bits needed to change
@@ -13,11 +13,11 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	int i;
 	unsigned int count = 0;
 	unsigned long int current;
-	unsigned long int exclusive = n ^ m;
+	unsigned long int X_OR = n ^ m;
 
 	for (i = 31; i >= 0; i--)
 	{
-		current = exclusive >> i;
+		current = X_OR >> i;
 		if (current & 1)
 			count++;
 	}
