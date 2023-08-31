@@ -1,20 +1,22 @@
 #inlcude "main.h"
 
 /**
- * clear_bit - sets the value of a bit to 0 at a given index.
- * @n: num  of i
- * @index: starting from 0 of the bit you want to set
- * Return: 1 if it worked, or -1 if an error occurred
+ * flip_bits - Count the number of bits needed to flip to get from n to m.
+ * @n: First unsigned long integer.
+ * @m: Second unsigned long integer.
+ *
+ * Return: The number of bits to flip.
  */
-
-int clear_bit(unsigned long int *n, unsigned int index)
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned long int i;
+	unsigned long int xor_result = n ^ m;
+	unsigned int count = 0;
 
-	if (index > (sizeof(unsigned long int) * 8 - 1))
-		return (-1);
-	i = ~(1 << index);
-	*n = *n & i;
+	while (xor_result > 0) {
+		if (xor_result & 1)
+			count++;
+		xor_result >>= 1;
+	}
 
-	return (1);
+	return count;
 }
