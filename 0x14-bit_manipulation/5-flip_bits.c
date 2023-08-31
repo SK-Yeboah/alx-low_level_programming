@@ -4,7 +4,7 @@
  * flip_bits - Count the number of bits needed to change
  * to get from one number to another.
  * @n: First number.
- * @m: Second number. 
+ * @m: Second number.
  *
  * Return: The number of bits to change.
  */
