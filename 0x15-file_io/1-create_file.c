@@ -35,23 +35,3 @@ int create_file(const char *filename, char *text_content)
 	close(file_d);
 	return (1);
 }
-
-
-/**
- * _strlen - Calculate the length of a NULL-terminated string.
- * @str: Pointer to the string whose length is to be calculated.
- *
- * Return: The length of the string (number of characters, excluding the NULL
- * terminator).
- */
-size_t _strlen(const char *str)
-{
-	size_t len = 0;
-
-	while (*str != '\0')
-	{
-		len++;
-		str++;
-	}
-	return (len);
-}
