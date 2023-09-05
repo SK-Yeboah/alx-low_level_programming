@@ -35,24 +35,24 @@ int main(int argc, char *argv[])
 	int file_s, file_f;
 	int read_stat, write_stat;
 	int close_s, close_f;
-	char buffer[MAXSIZE];
+	char buffer[BUFFER_SIZE];
 
 	if (argc != 3)
 	{
-		__exit(97, NULL, 0)
+		__exit(97, NULL, 0);
 	}
 	file_s = open(argv[1], O_RDONLY);
-	if (file_f == -1)
+	if (file_s == -1)
 	{
 		__exit(98, argv[1], 0);
 	}
 	file_f = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
-	if (file_out == -1)
+	if (file_f == -1)
 	{
 		__exit(99, argv[2], 0);
 	}
 
-	while ((read_stat = read(file_s, buffer, MAXSIZE)) != 0)
+	while ((read_stat = read(file_s, buffer, BUFFER_SIZE)) != 0)
 	{
 		if (read_stat == -1)
 			__exit(98, argv[1], 0);
@@ -62,11 +62,12 @@ int main(int argc, char *argv[])
 			__exit(98, argv[2], 0);
 		}
 	}
-	close_s = close(filr_s);
+	close_s = close(file_s);
 	if (close_s == -1)
 	{
 		__exit(100, NULL, file_s);
 	}
+	close_f = close(file_f);
 	if (close_f == -1)
 	{
 		__exit(100, NULL, file_f);
