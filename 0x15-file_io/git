@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Prompt the user for the wildcard pattern
+read -p "Enter the wildcard pattern (e.g., '*.txt'): " WILDCARD_PATTERN
+
+# Prompt the user for the commit message
+read -p "Enter the commit message: " COMMIT_MESSAGE
+
+# Find files matching the wildcard pattern
+shopt -s nullglob
+files=($WILDCARD_PATTERN)
+
+# Check if any files were found
+if [ ${#files[@]} -eq 0 ]; then
+    echo "Error: No files matching the wildcard pattern '$WILDCARD_PATTERN' found."
+    exit 1
+fi
+
+# Add the matching files to the staging area
+git add "${files[@]}"
+
+# Commit the changes with the user-provided commit message
+git commit -m "$COMMIT_MESSAGE"
+
+# Push the changes to the remote repository
+git push # Modify 'main' to your branch name if needed
+

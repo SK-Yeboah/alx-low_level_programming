@@ -26,11 +26,12 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	buffer = malloc(sizeof(char) * letters);
 	if (!buffer)
+	{
 		close(file_descriptor);
 		return (0);
+	}
 
 	r_result = read(file_descriptor, buffer, letters);
-
 	if (r_result < 0)
 	{
 		free(buffer);
@@ -40,7 +41,6 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	buffer[r_result] = '\0';
 	close(file_descriptor);
-
 	w_result = write(STDOUT_FILENO, buffer, r_result);
 
 	free(buffer);
