@@ -1,4 +1,12 @@
 #include "main.h"
+/**
+ * __exit - function that display error messages
+ * @error: error status code
+ * @str: Pointer to string
+ * @fd: file descriptor
+ *
+ * Return: Always 0 (Success)
+ */
 
 int __exit(int error, char *str, int fd)
 {
@@ -51,7 +59,6 @@ int main(int argc, char *argv[])
 	{
 		__exit(99, argv[2], 0);
 	}
-
 	while ((read_stat = read(file_s, buffer, BUFFER_SIZE)) != 0)
 	{
 		if (read_stat == -1)
