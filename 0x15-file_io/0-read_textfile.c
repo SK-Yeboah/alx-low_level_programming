@@ -8,7 +8,7 @@
  * Return: The number of letters successfully read and printed. 0 on error.
  */
 
-ssize_t custom_read_textfile(const char *file_name, size_t num_letters)
+ssize_t read_textfile(const char *file_name, size_t num_letters)
 {
 	int file_descriptor;
 	int read_result, write_result;
