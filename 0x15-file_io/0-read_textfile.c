@@ -1,57 +1,52 @@
 #include "main.h"
 
 /**
- * read_textfile-Read and print text from a file.
- * @filename: The name of the file to read from.
- * @letters: The maximum number of letters to read and print.
- *
- * Return: The number of letters successfully read and printed. 0 on error.
+ * read_textfile - reads a text file and prints it to the standard output
+ * @filename: name of the file to be read
+ * @letters: number of letters to read and print
+ * Return: the number of letters printed, or 0 if it failed
  */
 
-ssize_t read_textfile(const char *file_name, size_t num_letters)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int file_descriptor;
-	int read_result, write_result;
+	int r_result, w_result;
 	char *buffer;
 
-	if (!file_name)
+	if (!filename)
 	{
 		return (0);
 	}
 
-	file_descriptor = open(file_name, O_RDONLY);
+	file_descriptor = open(filename, O_RDONLY);
 	if (file_descriptor < 0)
 	{
 		return (0);
 	}
 
-	buffer = malloc(sizeof(char) * num_letters);
-
+	buffer = malloc(sizeof(char) * letters);
 	if (!buffer)
-	{
 		close(file_descriptor);
 		return (0);
-	}
 
-	read_result = read(file_descriptor, buffer, num_letters);
+	r_result = read(file_descriptor, buffer, letters);
 
-	if (read_result < 0)
+	if (r_result < 0)
 	{
 		free(buffer);
 		close(file_descriptor);
 		return (0);
 	}
 
-	buffer[read_result] = '\0';
+	buffer[r_result] = '\0';
 	close(file_descriptor);
 
-	write_result = write(STDOUT_FILENO, buffer, read_result);
+	w_result = write(STDOUT_FILENO, buffer, r_result);
 
 	free(buffer);
 
-	if (write_result < 0)
-	{
+	if (w_result < 0)
 		return (0);
-	}
-	return (write_result);
+
+	return (w_result);
 }
