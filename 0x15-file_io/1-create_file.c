@@ -9,25 +9,27 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fd, x, y = 0;
+	int file_d;
+	int b_written;
+	int y = 0;
 
 	if (!filename)
 		return (-1);
 
-	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
-	if (fd < 0)
+	file_d = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	if (file_d < 0)
 		return (-1);
 
 	if (text_content)
 	{
 		while (text_content[y])
 			y++;
-		x = write(fd, text_content, y);
+		b_written = write(file_d, text_content, y);
 		if (x != y)
 			return (-1);
 	}
 
-	close(fd);
+	close(file_d);
 
 	return (1);
 }
