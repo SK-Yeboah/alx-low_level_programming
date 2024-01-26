@@ -6,10 +6,10 @@ EXECUTABLE = school
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJ)
-    $(CC) $(OBJ) -o $(EXECUTABLE)
+	$(CC) $(OBJ) -o $(EXECUTABLE)
 
 %.o: %.c
-    $(CC) -c $< -o $@
+	$(CC) -c $< -o $@
 
 clean:
-    rm -f $(OBJ) $(EXECUTABLE)
+	rm -f $(OBJ) $(EXECUTABLE)
